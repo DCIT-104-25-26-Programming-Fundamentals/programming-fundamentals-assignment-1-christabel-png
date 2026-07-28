@@ -54,4 +54,49 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+def generate_single_table():
+    user_input = input("Enter a number: ")
+    try:
+        number = int(user_input)
+        if number <= 0:
+            print("Please enter a positive integer.")
+            return False
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")
+        return False
 
+    print(f"Multiplication Table for {number}:")
+    for i in range(1, 13):
+        print(f"{number}  x  {i}  =  {number * i}")
+    return True
+
+def generate_multiplication_tables():
+    user_input = input("Enter a number N: ")
+    try:
+        n = int(user_input)
+        if n <= 0:
+            print("Please enter a positive integer.")
+            return False
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")
+        return False
+
+    for number in range(1, n + 1):
+        print(f"Multiplication Table for {number}:")
+        for i in range(1, 13):
+            print(f"{number}  x  {i}  =  {number * i}")
+        if number != n:
+            print("---------------------------")
+    return True
+
+
+def main():
+    print("===part A===")
+    if not generate_single_table():
+        return
+    print("===part B===")
+    generate_multiplication_tables()
+
+
+if __name__ == "__main__":
+    main()
