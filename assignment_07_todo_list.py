@@ -77,5 +77,65 @@
 #
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
-# =============================================================================
+# 
 
+def display_menu():
+    """display the main menu options to the user"""
+    print("=======================================")
+    print("     TO-DO LIST MENU                   ")
+    print("=======================================")
+    print("1. Add task")
+    print("2. View tasks")
+    print("3. Delete task")
+    print("4. Quit")
+    print("Enter your choice (1-4): ")
+
+def add_task(tasks):
+    task = input("Enter task: ").strip()
+    if task: 
+        tasks.append(task)
+        print(f'Task added: "{task}"\n')
+    else:
+        print("No task entered. Please try again.\n")
+
+def view_tasks(tasks):
+    if tasks:
+        print("Your Tasks:")
+        for index, task in enumerate(tasks, start=1):
+            print(f"{index}. {task}")
+    else:
+        print("Your task list is empty.")
+    print()  # Add a newline for better readability
+def delete_task(tasks):
+    if not tasks:
+        print("Your task list is empty. Nothing to delete.\n")
+        return
+
+    view_tasks(tasks)
+    try:
+        task_number = int(input("Enter task number to delete: "))
+        if 1 <= task_number <= len(tasks):
+            removed_task = tasks.pop(task_number - 1)
+            print(f'Task "{removed_task}" has been removed.\n')
+        else:
+            print("Invalid task number. Please try again.\n")
+    except ValueError:
+        print("Invalid input. Please enter a valid number.\n")
+def main():
+    tasks = []
+    while True:
+        display_menu()
+        choice = input().strip()
+        if choice == '1':
+            add_task(tasks)
+        elif choice == '2':
+            view_tasks(tasks)
+        elif choice == '3':
+            delete_task(tasks)
+        elif choice == '4':
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.\n")
+if __name__ == "__main__":
+    main()               
